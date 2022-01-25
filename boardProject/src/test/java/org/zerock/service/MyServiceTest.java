@@ -1,4 +1,7 @@
-package org.zerock.mapper;
+package org.zerock.service;
+
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,13 +15,18 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class TimeMapperTests {
-
+public class MyServiceTest {
+    
     @Setter(onMethod_ = @Autowired)
-    private TimeMapper timeMapper;
+    private MyService service;
+    
+    @Test
+    public void test() {
+        assertNotNull(service);
+    }
     
     @Test
     public void testGetTime() {
-        log.info(timeMapper.getTime());
+        log.info(service.getTime()+".................................................");
     }
 }
