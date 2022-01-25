@@ -6,7 +6,7 @@
 	<groupId>org.zerock</groupId>
 	<artifactId>controller</artifactId>
 	<name>boardProject</name>
-	<packaging>war</packaging> 
+	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>11</java-version>

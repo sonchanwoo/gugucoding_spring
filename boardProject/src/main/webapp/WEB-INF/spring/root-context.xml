@@ -34,4 +34,5 @@
 		base-package="org.zerock.service"></context:component-scan>
 
 	<mybatis-spring:scan base-package="org.zerock.dao" />
+	
 </beans>

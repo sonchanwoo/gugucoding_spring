@@ -6,8 +6,8 @@
 <configuration>
   <typeAliases>
     
-    <!--
-    <typeAlias type="" alias="" />
-      -->
+    
+    <typeAlias type="org.zerock.domain.BoardVO" alias="BoardVO" />
+     
   </typeAliases>
 </configuration>
