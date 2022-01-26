@@ -1,0 +1,82 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form id="form" method="POST">
+
+<div>
+		<label>bno</label><br/>
+		<input name="bno" type="text" readOnly	value="${vo.bno }" />
+	</div>
+
+	<div>
+		<label>title</label><br/>
+		<input name="title"  type="text" required name="title" value="${vo.title }" />
+	</div>
+	
+	<div>
+		<label>writer</label><br/>
+		<input  name="writer" readonly  type="text" required name="writer"	value="${vo.writer }" />
+	</div>
+	
+	<div>
+		<label>content</label><br/>
+		<textarea name="content" rows="3" required><c:out value="${vo.content }" />
+		</textarea>
+	</div>
+	
+	<div>
+		<label>registerDate</label><br/>
+		<input type="text" readonly	value='<fmt:formatDate pattern="yyyy/MM/dd" value="${vo.regDate }" />'  />
+	</div>
+	
+	<div>
+		<label>updateDate</label><br/>
+		<input type="text" readonly	value='<fmt:formatDate pattern="yyyy/MM/dd" value="${vo.updateDate }" />'  />
+	</div>
+	
+	<div>
+		<button id="modifyButton">modify</button>
+		<button id="removeButton">remove</button>
+		<button id="listButton" type="button">list</button>
+	</div>	
+	
+	</form>
+	
+	<script type="text/javascript">
+		const removeButton = document.querySelector("#removeButton");
+		
+		function list() {
+			location.href = "/board/list";
+		}
+		
+		function modify(e){
+			e.preventDefault();
+			
+			form.action="/board/modify";
+			form.submit();
+		}
+		
+		function remove(e){
+			e.preventDefault();
+			
+			form.action="/board/remove";
+			form.submit();
+		}
+		
+		modifyButton.addEventListener("click",modify);
+		removeButton.addEventListener("click",remove);
+		listButton.addEventListener("click",list);
+	
+	</script>
+
+</body>
+</html>

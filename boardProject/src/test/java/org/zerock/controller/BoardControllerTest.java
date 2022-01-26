@@ -85,8 +85,7 @@ public class BoardControllerTest {
     
     @Test
     public void testGetAndModify() throws Exception{
-        ModelAndView modelAndView = mockMvc.perform(MockMvcRequestBuilders.get("/board/get")
-                .param("bno", "4"))//원하는 방식과, 경로
+        ModelAndView modelAndView = mockMvc.perform(MockMvcRequestBuilders.get("/board/get?bno=8"))
                 .andReturn().getModelAndView();
 
         ModelMap modelMap = modelAndView.getModelMap();
