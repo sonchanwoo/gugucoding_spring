@@ -26,8 +26,9 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void register(BoardVO vo) {
-        dao.insert(vo);
+    public boolean register(BoardVO vo) {
+        //dao.insert(vo);
+        return dao.insertSelectKey(vo) == 1;
     }
 
     @Override

@@ -22,16 +22,32 @@
 		values
 		(#{title},#{content}, #{writer})
 	</insert>
-	
+
+	<insert id="insertSelectKey">
+		<!-- 
+		<selectKey resultType="long" keyProperty="bno" 	order="BEFORE">
+			select MAX(bno) + 1 from tbl_board
+		</selectKey> -->
+		
+		insert into tbl_board (title,content,writer)
+		values
+		(#{title},#{content}, #{writer})
+		
+		<selectKey resultType="long" keyProperty="bno" 	order="AFTER">
+			select MAX(bno) from tbl_board
+		</selectKey>
+	</insert>
+
 	<update id="update">
-  			update tbl_board
-  			set title=#{title},
-  			content = #{content},
-  			writer = #{writer},
-  			updateDate = now()
-  			where bno = #{bno}
+		update tbl_board
+		set title=#{title},
+		content =
+		#{content},
+		writer = #{writer},
+		updateDate = now()
+		where bno = #{bno}
 	</update>
-	
+
 	<delete id="delete">
 		delete from tbl_board where bno=#{bno}
 	</delete>

@@ -14,4 +14,6 @@ public interface BoardDAO {
     public int update(BoardVO vo);
 
     public int delete(Long bno);
+
+    public int insertSelectKey(BoardVO vo);
 }

@@ -45,6 +45,18 @@ public class BoardDAOTest {
     }
     
     @Test
+    public void testInsertSelectKey() {
+        BoardVO vo = new BoardVO();
+        vo.setContent("helo");
+        vo.setTitle("title");
+        vo.setWriter("me");
+        
+        dao.insertSelectKey(vo);
+        
+        log.info(vo);
+    }
+    
+    @Test
     public void testUpdate() {
         BoardVO vo = new BoardVO();
         vo.setBno(19L);

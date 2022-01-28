@@ -9,7 +9,7 @@ public interface BoardService {
 
     public BoardVO get(Long bno);
 
-    public void register(BoardVO vo);
+    public boolean register(BoardVO vo);
 
     public boolean modify(BoardVO vo);
     
