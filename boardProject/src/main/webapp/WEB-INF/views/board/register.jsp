@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="../includes/header.jsp" %>
+
 	<form action="/board/register" method="POST">
 
 		<div>
@@ -35,5 +30,4 @@
 
 		listButton.addEventListener("click", list);
 	</script>
-</body>
-</html>
+<%@ include file="../includes/footer.jsp"%>
