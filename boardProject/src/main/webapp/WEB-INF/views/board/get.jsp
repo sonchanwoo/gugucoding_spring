@@ -60,7 +60,7 @@
 			form.submit();
 		}*/
 		
-		function list() {
+		function list() { /*여기서 input지우고 뭐고 하지말고 그냥 location으로 해버리면 안되냐*/
 			location.href = "/board/list";
 		}
 		

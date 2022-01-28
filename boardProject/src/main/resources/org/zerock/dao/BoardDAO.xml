@@ -7,7 +7,7 @@
 
 	<select id="getList" resultType="BoardVO">
 		<![CDATA[
-			select bno,title,content,writer,regDate,updateDate from tbl_board
+			select bno,title,content,writer,regDate,updateDate from tbl_board where bno > 0
 		]]>
 	</select>
 
