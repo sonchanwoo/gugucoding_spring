@@ -11,6 +11,13 @@
 		]]>
 	</select>
 
+	<select id="getListWithPage" resultType="BoardVO">
+		<![CDATA[
+			select bno,title,content,writer,regDate,updateDate from tbl_board where bno > 0
+			limit ${(pageNum-1)*amount}, #{amount}
+		]]>
+	</select>
+
 	<select id="read" resultType="BoardVO">
 		select
 		bno,title,content,writer,regDate,updateDate from tbl_board where
@@ -24,17 +31,16 @@
 	</insert>
 
 	<insert id="insertSelectKey">
-		<!-- 
-		<selectKey resultType="long" keyProperty="bno" 	order="BEFORE">
-			select MAX(bno) + 1 from tbl_board
-		</selectKey> -->
-		
+		<!-- <selectKey resultType="long" keyProperty="bno" order="BEFORE"> select 
+			MAX(bno) + 1 from tbl_board </selectKey> -->
+
 		insert into tbl_board (title,content,writer)
 		values
 		(#{title},#{content}, #{writer})
-		
-		<selectKey resultType="long" keyProperty="bno" 	order="AFTER">
-			select MAX(bno) from tbl_board
+
+		<selectKey resultType="long" keyProperty="bno" order="AFTER">
+			select
+			MAX(bno) from tbl_board
 		</selectKey>
 	</insert>
 

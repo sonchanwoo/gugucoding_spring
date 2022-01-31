@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.zerock.dao.BoardDAO;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 import lombok.AllArgsConstructor;
 
@@ -39,6 +40,11 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public boolean remove(Long bno) {
         return dao.delete(bno)==1;
+    }
+
+    @Override
+    public List<BoardVO> getListWithPage(Criteria cri) {
+        return dao.getListWithPage(cri);
     }
 
 }

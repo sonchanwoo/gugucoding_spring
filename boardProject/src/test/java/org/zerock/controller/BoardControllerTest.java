@@ -36,7 +36,7 @@ public class BoardControllerTest {
 
     @Test
     public void testList() throws Exception{
-        ModelAndView modelAndView = mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))//원하는 방식과, 경로
+        ModelAndView modelAndView = mockMvc.perform(MockMvcRequestBuilders.get("/board/list?pageNum=2&&amount=10"))//원하는 방식과, 경로
                 .andReturn().getModelAndView();
 
         ModelMap modelMap = modelAndView.getModelMap();
