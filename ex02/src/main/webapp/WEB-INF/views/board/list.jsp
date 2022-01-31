@@ -72,6 +72,7 @@
 				<div class = 'row'>
 					<div class="pull-right">
 						<ul class="pagination">
+						
 							<c:if test="${pageMaker.prev}">
 								<li class="paginate_button previous">
 									<a href="${pageMaker.startPage -1 }">Previous</a>
