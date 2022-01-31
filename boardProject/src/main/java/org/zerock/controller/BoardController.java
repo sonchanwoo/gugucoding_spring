@@ -37,21 +37,29 @@ public class BoardController {
     }
     
     @GetMapping({"/get","/modify"})
-    public void get(Long bno, Model model) {
+    public void get(Long bno, Criteria cri, Model model) {
         model.addAttribute("vo",service.get(bno));
     }
     
     @PostMapping("/modify")
-    public String modify(BoardVO vo, RedirectAttributes rttr){
+    public String modify(BoardVO vo, RedirectAttributes rttr, Criteria cri){
         if(service.modify(vo))
             rttr.addFlashAttribute("result", "success");
+        
+        rttr.addFlashAttribute("pageNum", cri.getPageNum());
+        rttr.addFlashAttribute("amount", cri.getAmount());
+        
         return "redirect:/board/list";
     }
     
     @PostMapping("/remove")
-    public String remove(Long bno, RedirectAttributes rttr){
+    public String remove(Long bno, RedirectAttributes rttr, Criteria cri){
         if(service.remove(bno))
             rttr.addFlashAttribute("result", "success");
+        
+        rttr.addFlashAttribute("pageNum", cri.getPageNum());
+        rttr.addFlashAttribute("amount", cri.getAmount());
+        
         return "redirect:/board/list";
     }
 }

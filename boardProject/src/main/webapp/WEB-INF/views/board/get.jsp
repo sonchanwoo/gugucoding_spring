@@ -40,33 +40,32 @@
 		<button id="listButton">list</button>
 	</div>	
 	
-	<form id="form" hidden="true" method="GET">
+	<form id ='operForm' hidden = "true" method="get">
+		<input name="bno" value='<c:out value="${vo.bno }" />' />
+		<input name="pageNum" value='<c:out value="${criteria.pageNum }" />' />
+		<input name="amount" value='<c:out value="${criteria.amount }" />' />
 	</form>
 	
 	<script type="text/javascript">
 	
-		const modifyButton = document.querySelector("#modifyButton");
-		const listButton = document.querySelector("#listButton");
+	$(document).ready(function(){
 		
-		const form = document.querySelector("#form");
-		/*
-		function list(){
-			form.action="/board/list";
-			form.submit();
-		}*/
+		const operForm = $("#operForm");
 		
-		function list() { /*여기서 input지우고 뭐고 하지말고 그냥 location으로 해버리면 안되냐*/
-			location.href = "/board/list";
-		}
+		//list
+		$("#listButton").on("click", function(){
+			operForm.attr("action","/board/list");
+			operForm.find("input[name='bno']").remove();
+			operForm.submit();
+		});//end
 		
-		function modify(){
-			form.innerHTML = '<input id="bno" name="bno" value="${vo.bno}" />';
-			form.action="/board/modify";
-			form.submit();
-		}
+		//modify
+		$("#modifyButton").on("click",function(){
+			operForm.attr("action","/board/modify");			
+			operForm.submit();
+		});//end
 		
-		modifyButton.addEventListener("click",modify);
-		listButton.addEventListener("click",list);
+	});
 	
 	</script>
 <%@ include file="../includes/footer.jsp"%>

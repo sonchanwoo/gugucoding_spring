@@ -19,7 +19,7 @@
 		<c:forEach items="${list }" var="vo">
 			<tr>
 				<td><c:out value="${vo.bno }"></c:out></td>
-				<td><a href="/board/get?bno=${vo.bno }"> <c:out
+				<td><a class="move" href="${vo.bno }"> <c:out
 							value="${vo.title }"></c:out>
 				</a></td>
 				<td><c:out value="${vo.writer }"></c:out></td>
@@ -53,61 +53,92 @@
 <!-- pageMaker -->
 <div class='row'>
 	<ul class="pagination">
-		
-			<c:if test="${pageMaker.prev}">
-				<li class="paginate_button previous"><a
-					href="/board/list?pageNum=${pageMaker.startPage - 1}&&amount=5">Previous</a></li>
-			</c:if>
- 
+
+		<c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous"><a
+				href="${pageMaker.startPage - 1}">Previous</a></li>
+		</c:if>
+
 		<c:forEach var="num" begin="${pageMaker.startPage }"
 			end="${pageMaker.endPage }">
 			<li class="paginate_button ${criteria.pageNum==num ? "active":"" }">
-				<a href="/board/list?pageNum=${num}&&amount=5">${num }</a>
+				<a href="${num}">${num }</a>
 			</li>
 		</c:forEach>
-		
-			<c:if test="${pageMaker.next}">
-				<li class="paginate_button next"><a
-					href="/board/list?pageNum=${pageMaker.endPage + 1}&&amount=5">Next</a></li>
-			</c:if>
- 
+
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next"><a
+				href="${pageMaker.endPage + 1}">Next</a></li>
+		</c:if>
+
 	</ul>
 </div>
 
 <button id="regButton">register</button>
 
+<form id="actionForm" action="/board/list" method="GET">
+	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }" />
+	<input type="hidden" name="amount" value="${pageMaker.cri.amount }" />
+</form>
+
 <script type="text/javascript">
-	$(document).ready(
+	$(document)	.ready(
 			function() {
+						//modal
+						const result = '<c:out value="${result}" />';
 
-				//modal
-				const result = '<c:out value="${result}" />';
+						checkModal(result);
 
-				checkModal(result);
+						history.replaceState({}, null, null);
 
-				history.replaceState({}, null, null);
+						function checkModal(result) {
 
-				function checkModal(result) {
+							if (result === '' || history.state)
+								return;
 
-					if (result === '' || history.state)
-						return;
+							if (parseInt(result) > 0) {
+								$(".modal-body").html(
+										"게시글" + parseInt(result)
+												+ " 번이 등록되었습니다.");
+							}
 
-					if (parseInt(result) > 0) {
-						$(".modal-body").html(
-								"게시글" + parseInt(result) + " 번이 등록되었습니다.");
-					}
+							$("#myModal").modal("show");
 
-					$("#myModal").modal("show");
-				}
+						}//end-modal
 
-				//register
-				const regButton = document.querySelector("#regButton");
+						
+						//register
+						$("#regButton").on("click", function() {
+							location.href = "/board/register";
+						});//end-register
 
-				function register() {
-					location.href = "/board/register";
-				}
+						
+						//move page
+						const actionForm = $("#actionForm");
 
-				regButton.addEventListener("click", register);
-			});
+						$(".paginate_button a")	.on("click",
+						function(e) {
+								e.preventDefault();
+											
+								actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+						
+								actionForm.attr("action","/board/list");
+								actionForm.submit();
+						});//end-move page
+						
+						
+						//move get
+						$(".move").on("click", function(e){
+							e.preventDefault();
+							
+							actionForm.append("<input type='hidden' name='bno' value='' />");
+							
+							actionForm.find("input[name='bno']").val($(this).attr("href"));
+							
+							actionForm.attr("action","/board/get");
+							actionForm.submit();
+						})//end move
+
+					});
 </script>
 <%@ include file="../includes/footer.jsp"%>

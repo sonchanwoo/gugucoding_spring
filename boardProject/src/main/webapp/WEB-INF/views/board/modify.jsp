@@ -2,73 +2,86 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="../includes/header.jsp"%>
 
-	<form id="form" method="POST">
+<form id="modifyForm" action="/board/modify" method="POST">
 
-		<div>
-			<label>bno</label><br /> <input name="bno" type="text" readOnly
-				value="${vo.bno }" />
-		</div>
+	<div>
+		<label>bno</label><br /> <input name="bno" type="text" readOnly
+			value="${vo.bno }" />
+	</div>
 
-		<div>
-			<label>title</label><br /> <input name="title" type="text" required
-				name="title" value="${vo.title }" />
-		</div>
+	<div>
+		<label>title</label><br /> <input name="title" type="text" required
+			name="title" value="${vo.title }" />
+	</div>
 
-		<div>
-			<label>writer</label><br /> <input name="writer" readonly type="text"
-				required name="writer" value="${vo.writer }" />
-		</div>
+	<div>
+		<label>writer</label><br /> <input name="writer" readonly type="text"
+			required name="writer" value="${vo.writer }" />
+	</div>
 
-		<div>
-			<label>content</label><br />
-			<textarea name="content" rows="3" required><c:out
-					value="${vo.content }" />
+	<div>
+		<label>content</label><br />
+		<textarea name="content" rows="3" required><c:out
+				value="${vo.content }" />
 		</textarea>
-		</div>
+	</div>
 
-		<div>
-			<label>registerDate</label><br /> <input type="text" readonly
-				value='<fmt:formatDate pattern="yyyy/MM/dd" value="${vo.regDate }" />' />
-		</div>
+	<div>
+		<label>registerDate</label><br /> <input type="text" readonly
+			value='<fmt:formatDate pattern="yyyy/MM/dd" value="${vo.regDate }" />' />
+	</div>
 
-		<div>
-			<label>updateDate</label><br /> <input type="text" readonly
-				value='<fmt:formatDate pattern="yyyy/MM/dd" value="${vo.updateDate }" />' />
-		</div>
+	<div>
+		<label>updateDate</label><br /> <input type="text" readonly
+			value='<fmt:formatDate pattern="yyyy/MM/dd" value="${vo.updateDate }" />' />
+	</div>
 
-		<div>
-			<button id="modifyButton">modify</button>
-			<button id="removeButton">remove</button>
-			<button id="listButton" type="button">list</button>
-		</div>
+	<div>
+		<button data-oper="modify">modify</button>
+		<button data-oper="remove">remove</button>
+		<button data-oper="list" type="button">list</button>
+	</div>
 
-	</form>
+	<input type="hidden" name="pageNum"
+		value='<c:out value="${criteria.pageNum }" />' /> <input
+		type="hidden" name="amount"
+		value='<c:out value="${criteria.amount }" />' />
 
-	<script type="text/javascript">
-		const removeButton = document.querySelector("#removeButton");
+</form>
 
-		function list() {
-			location.href = "/board/list";//여기도 form을 get으로 바꾸고 액션을 /board/list바꾸는 거 말고는 안되나?
-		}
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				const modifyForm = $("#modifyForm");
 
-		function modify(e) {
-			e.preventDefault();
+				$("button").on(
+						"click",
+						function(e) {
 
-			form.action = "/board/modify";
-			form.submit();
-		}
+							e.preventDefault();
 
-		function remove(e) {
-			e.preventDefault();
+							const oper = $(this).data("oper");
 
-			form.action = "/board/remove";
-			form.submit();
-		}
+							if (oper === "remove")
+								modifyForm.attr("action", "/board/remove");
 
-		modifyButton.addEventListener("click", modify);
-		removeButton.addEventListener("click", remove);
-		listButton.addEventListener("click", list);
-	</script>
+							if (oper === "list") {
+								modifyForm.attr("action", "/board/remove")
+										.attr("method", "get");
+
+								const pageNum = $("input[name='pageNum']")
+										.clone();
+								const amount = $("input[name='amount']")
+										.clone();
+
+								modifyForm.empty();
+								modifyForm.append(pageNum);
+								modifyForm.append(amount);
+							}
+							modifyForm.submit();
+						});
+			});
+</script>
 <%@ include file="../includes/footer.jsp"%>
