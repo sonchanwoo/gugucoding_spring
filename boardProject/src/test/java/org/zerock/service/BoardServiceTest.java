@@ -66,4 +66,9 @@ public class BoardServiceTest {
     public void testRemove() {
         service.remove(20L);
     }
+    
+    @Test
+    public void testGetTotal() {
+        log.info(service.getTotal());
+    }
 }

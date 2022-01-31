@@ -47,4 +47,9 @@ public class BoardServiceImpl implements BoardService {
         return dao.getListWithPage(cri);
     }
 
+    @Override
+    public int getTotal() {
+        return dao.getTotal();
+    }
+
 }

@@ -19,4 +19,6 @@ public interface BoardDAO {
     public int delete(Long bno);
 
     public int insertSelectKey(BoardVO vo);
+
+    public int getTotal();
 }

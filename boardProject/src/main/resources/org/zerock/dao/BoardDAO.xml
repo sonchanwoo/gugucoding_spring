@@ -5,6 +5,12 @@
 
 <mapper namespace="org.zerock.dao.BoardDAO">
 
+	<select id="getTotal" resultType="int">
+		<![CDATA[
+			select count(bno) from tbl_board where bno > 0
+		]]>
+	</select>
+
 	<select id="getList" resultType="BoardVO">
 		<![CDATA[
 			select bno,title,content,writer,regDate,updateDate from tbl_board where bno > 0

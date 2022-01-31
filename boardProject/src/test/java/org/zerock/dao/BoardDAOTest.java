@@ -78,4 +78,9 @@ public class BoardDAOTest {
     public void testRemove() {
         log.info(dao.delete(19L));
     }    
+    
+    @Test
+    public void testGetTotal() {
+        log.info(dao.getTotal());
+    }
 }

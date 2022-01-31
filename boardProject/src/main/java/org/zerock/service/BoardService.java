@@ -17,4 +17,6 @@ public interface BoardService {
     public boolean modify(BoardVO vo);
     
     public boolean remove(Long bno);
+
+    public int getTotal();
 }
