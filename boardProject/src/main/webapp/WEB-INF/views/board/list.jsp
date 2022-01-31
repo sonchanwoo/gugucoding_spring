@@ -60,8 +60,8 @@
 				const result = '<c:out value="${result}" />';
 
 				checkModal(result);
-				
-				history.replaceState({},null,null);
+
+				history.replaceState({}, null, null);
 
 				function checkModal(result) {
 
