@@ -50,6 +50,29 @@
 	</div>
 </div>
 
+<!-- pageMaker -->
+<div class='row'>
+		<ul class="pagination">
+<!-- 
+			<c:if test="${pageMaker.prev}">
+				<li class="paginate_button previous"><a
+					href="${pageMaker.startPage -1 }">Previous</a></li>
+			</c:if>
+ -->
+			<c:forEach var="num" begin="1" end="5">
+				<li class="paginate_button ${criteria.pageNum==num ? "active":"" }">
+					<a href="/board/list?pageNum=${num}&&amount=10">${num }</a>
+				</li>
+			</c:forEach>
+<!-- 
+			<c:if test="${pageMaker.next}">
+				<li class="paginate_button next"><a
+					href="${pageMaker.endPage +1 }">Next</a></li>
+			</c:if>
+ -->
+		</ul>
+</div>
+
 <button id="regButton">register</button>
 
 <script type="text/javascript">
