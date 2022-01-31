@@ -53,24 +53,24 @@
 <!-- pageMaker -->
 <div class='row'>
 	<ul class="pagination">
-		<!-- 
-			<c:if test="">
+		
+			<c:if test="${pageMaker.prev}">
 				<li class="paginate_button previous"><a
-					href="">Previous</a></li>
+					href="/board/list?pageNum=${pageMaker.startPage - 1}&&amount=5">Previous</a></li>
 			</c:if>
- -->
+ 
 		<c:forEach var="num" begin="${pageMaker.startPage }"
 			end="${pageMaker.endPage }">
 			<li class="paginate_button ${criteria.pageNum==num ? "active":"" }">
 				<a href="/board/list?pageNum=${num}&&amount=5">${num }</a>
 			</li>
 		</c:forEach>
-		<!-- 
-			<c:if test="">
+		
+			<c:if test="${pageMaker.next}">
 				<li class="paginate_button next"><a
-					href="">Next</a></li>
+					href="/board/list?pageNum=${pageMaker.endPage + 1}&&amount=5">Next</a></li>
 			</c:if>
- -->
+ 
 	</ul>
 </div>
 
