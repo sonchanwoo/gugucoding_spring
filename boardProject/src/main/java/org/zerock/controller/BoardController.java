@@ -45,21 +45,21 @@ public class BoardController {
     public String modify(BoardVO vo, RedirectAttributes rttr, Criteria cri){
         if(service.modify(vo))
             rttr.addFlashAttribute("result", "success");
-        
+        /*
         rttr.addAttribute("pageNum", cri.getPageNum());
         rttr.addAttribute("amount", cri.getAmount());
-        
-        return "redirect:/board/list";
+        rttr.addAttribute("keyword", cri.getKeyword());
+        rttr.addAttribute("type", cri.getType());
+        */
+        return "redirect:/board/list"+cri.getListLink();
     }
     
     @PostMapping("/remove")
     public String remove(Long bno, RedirectAttributes rttr, Criteria cri){
+        
         if(service.remove(bno))
             rttr.addFlashAttribute("result", "success");
         
-        rttr.addAttribute("pageNum", cri.getPageNum());
-        rttr.addAttribute("amount", cri.getAmount());
-        
-        return "redirect:/board/list";
+        return "redirect:/board/list"+cri.getListLink();
     }
 }
