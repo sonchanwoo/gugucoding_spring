@@ -46,8 +46,8 @@ public class BoardController {
         if(service.modify(vo))
             rttr.addFlashAttribute("result", "success");
         
-        rttr.addFlashAttribute("pageNum", cri.getPageNum());
-        rttr.addFlashAttribute("amount", cri.getAmount());
+        rttr.addAttribute("pageNum", cri.getPageNum());
+        rttr.addAttribute("amount", cri.getAmount());
         
         return "redirect:/board/list";
     }
@@ -57,8 +57,8 @@ public class BoardController {
         if(service.remove(bno))
             rttr.addFlashAttribute("result", "success");
         
-        rttr.addFlashAttribute("pageNum", cri.getPageNum());
-        rttr.addFlashAttribute("amount", cri.getAmount());
+        rttr.addAttribute("pageNum", cri.getPageNum());
+        rttr.addAttribute("amount", cri.getAmount());
         
         return "redirect:/board/list";
     }

@@ -68,7 +68,7 @@
 								modifyForm.attr("action", "/board/remove");
 
 							if (oper === "list") {
-								modifyForm.attr("action", "/board/remove")
+								modifyForm.attr("action", "/board/list")
 										.attr("method", "get");
 
 								const pageNum = $("input[name='pageNum']")
@@ -80,6 +80,7 @@
 								modifyForm.append(pageNum);
 								modifyForm.append(amount);
 							}
+							
 							modifyForm.submit();
 						});
 			});
