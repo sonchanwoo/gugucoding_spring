@@ -14,7 +14,7 @@ public interface BoardService {
     
     public boolean remove(Long bno);
     
-    public List<BoardVO> getList(Criteria cti);
+    public List<BoardVO> getList(Criteria cri);
     
     public int getLastBno();
     

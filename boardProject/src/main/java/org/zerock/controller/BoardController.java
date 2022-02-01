@@ -22,7 +22,7 @@ public class BoardController {
     @GetMapping("/list")
     public void list(Criteria cri, Model model) {
         model.addAttribute("list",service.getListWithPage(cri));
-        model.addAttribute("pageMaker", new PageDTO(cri,service.getTotal()));
+        model.addAttribute("pageMaker", new PageDTO(cri,service.getTotal(cri)));
     }
     
     @GetMapping("/register")

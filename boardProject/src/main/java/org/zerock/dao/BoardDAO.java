@@ -20,5 +20,5 @@ public interface BoardDAO {
 
     public int insertSelectKey(BoardVO vo);
 
-    public int getTotal();
+    public int getTotal(Criteria cri);
 }
