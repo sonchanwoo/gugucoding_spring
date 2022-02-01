@@ -2,6 +2,8 @@ package org.zerock.dao;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +83,19 @@ public class BoardDAOTest {
     
     @Test
     public void testGetTotal() {
-        log.info(dao.getTotal());
+        Criteria cri = new Criteria();
+        cri.setKeyword("test");
+        cri.setType("C");
+        
+        log.info(dao.getTotal(cri));
+    }
+    
+    @Test
+    public void testSearch() {
+        Criteria cri = new Criteria();
+        cri.setKeyword("test");
+        cri.setType("C");
+        
+        dao.getListWithPage(cri).forEach(vo -> log.info(vo));
     }
 }

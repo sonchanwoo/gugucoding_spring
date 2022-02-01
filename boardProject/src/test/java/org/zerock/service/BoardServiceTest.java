@@ -69,6 +69,6 @@ public class BoardServiceTest {
     
     @Test
     public void testGetTotal() {
-        log.info(service.getTotal());
+        //log.info(service.getTotal());
     }
 }

@@ -44,10 +44,11 @@
 		<button data-oper="list" type="button">list</button>
 	</div>
 
-	<input type="hidden" name="pageNum"
-		value='<c:out value="${criteria.pageNum }" />' /> <input
-		type="hidden" name="amount"
-		value='<c:out value="${criteria.amount }" />' />
+		<input type="hidden" name="bno" value='<c:out value="${vo.bno }" />' />
+		<input type="hidden" name="pageNum" value='<c:out value="${criteria.pageNum }" />' />
+		<input type="hidden" name="amount" value='<c:out value="${criteria.amount }" />' />
+		<input type="hidden" name='type' value='<c:out value="${ criteria.type }"/>' />
+		<input type="hidden" name='keyword' value='<c:out value="${ criteria.keyword }"/>' />
 
 </form>
 
@@ -75,10 +76,15 @@
 										.clone();
 								const amount = $("input[name='amount']")
 										.clone();
+								const keyword = $("input[name='keyword']").clone();
+								const type = $("input[name='type']").clone();
 
 								modifyForm.empty();
+								
 								modifyForm.append(pageNum);
 								modifyForm.append(amount);
+								modifyForm.append(type);
+								modifyForm.append(keyword);
 							}
 							
 							modifyForm.submit();

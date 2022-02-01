@@ -44,6 +44,8 @@
 		<input name="bno" value='<c:out value="${vo.bno }" />' />
 		<input name="pageNum" value='<c:out value="${criteria.pageNum }" />' />
 		<input name="amount" value='<c:out value="${criteria.amount }" />' />
+		<input name='type' value='<c:out value="${ criteria.type }"/>' />
+		<input name='keyword' value='<c:out value="${ criteria.keyword }"/>' />
 	</form>
 	
 	<script type="text/javascript">
