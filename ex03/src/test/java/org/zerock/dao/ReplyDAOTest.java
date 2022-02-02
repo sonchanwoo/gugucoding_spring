@@ -71,6 +71,6 @@ public class ReplyDAOTest {
     
     @Test
     public void testList() {
-        dao.getListWithPaging(new Criteria(), 9l).forEach(vo -> log.info(vo));
+        dao.getListWithPaging(new Criteria(2,5), 9l).forEach(vo -> log.info(vo));
     }
 }

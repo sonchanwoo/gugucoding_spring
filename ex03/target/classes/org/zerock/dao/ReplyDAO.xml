@@ -33,19 +33,26 @@
 
 	</update>
 	
-	<select id="getListWithPaging"
+<!-- 	<select id="getListWithPaging"
 		resultType="ReplyVO">
 		select rno, bno, reply, replyer, replyDate, updatedate
 		from tbl_reply
 		where bno = #{bno}
 		order by rno asc
+	</select> -->
+	
+	<select id="getListWithPaging"
+		resultType="ReplyVO">
+		select /*+index(tbl_reply idx_reply)*/ rno, bno, reply, replyer, replyDate, updatedate
+		from tbl_reply
+		where bno = #{bno}
+		limit ${(cri.pageNum-1)*cri.amount}, #{cri.amount}
 	</select>
 	
-<!--
 
 	<select id="getCountByBno" resultType="int">
 		select count(rno) from tbl_reply where bno = #{bno}
 	</select>
-  -->
+
 
 </mapper>
