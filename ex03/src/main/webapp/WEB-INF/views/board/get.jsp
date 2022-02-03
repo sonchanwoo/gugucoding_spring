@@ -119,6 +119,9 @@
 
 						var bnoValue = '<c:out value="${vo.bno}"/>';
 						var replyUL = $(".chat");
+					      
+					      var pageNum = 1;
+					      var replyPageFooter = $(".panel-footer");
 
 						showList(1);
 
@@ -184,7 +187,7 @@
 					          modal.find("input").val("");
 					          modal.modal("hide");
 					          
-					          showList(2);
+					          showList(1);
 					          
 					        });
 					        
@@ -222,7 +225,7 @@
 					              
 					          alert(result);
 					          modal.modal("hide");
-					          showList(1);
+					          showList(pageNum);
 					          
 					        });
 					        
@@ -235,14 +238,11 @@
 					    	        
 					    	      alert(result);
 					    	      modal.modal("hide");
-					    	      showList(1);
+					    	      showList(pageNum);
 					    	      
 					    	  });
 					    	  
 					    	}); 
-					      
-					      var pageNum = 1;
-					      var replyPageFooter = $(".panel-footer");
 					      
 					      function showReplyPage(replyCnt){
 					        
