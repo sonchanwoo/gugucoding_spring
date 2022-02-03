@@ -29,7 +29,7 @@ const replyService = (function(){
 	        function(data) {//ajax는 호출만, getJson은 호출+데이터받아오기
 	    	
 	          if (callback) {
-	            callback(data); //출력함수에 데이터를 전달하고 실행함
+	            callback(data.list,data.replyCnt); //출력함수에 데이터를 전달하고 실행함
 	          }
 	        }).fail(function(xhr, status, err) {
 	      if (error) {

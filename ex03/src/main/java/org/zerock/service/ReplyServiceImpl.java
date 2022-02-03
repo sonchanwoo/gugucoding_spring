@@ -1,10 +1,9 @@
 package org.zerock.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.zerock.dao.ReplyDAO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVO;
 
 import lombok.AllArgsConstructor;
@@ -44,9 +43,9 @@ public class ReplyServiceImpl implements ReplyService{
     }
 
     @Override
-    public List<ReplyVO> getList(Criteria cri, Long bno) {
+    public ReplyPageDTO getList(Criteria cri, Long bno) {
 
-      return dao.getListWithPaging(cri, bno);
+      return new ReplyPageDTO(dao.getListWithPaging(cri, bno),dao.getCountByBno(bno));
 
     }
 
